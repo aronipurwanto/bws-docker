@@ -50,3 +50,21 @@ docker build -t ahmadr0ni/sample-user -f Dockerfile --build-arg app=bws .
 
 docker container create --name sample-arg -p 8080:8080 ahmadr0ni/sample-arg:latest
 
+# HEALTHCHECK Instruction
+ docker build -t ahmadr0ni/health -f Dockerfile .
+
+docker container create --name health -p 8080:8080 ahmadr0ni/health
+
+docker container start health
+
+docker container ls
+
+docker container inspect health
+
+#Entry Point
+docker build -t ahmadr0ni/sample-entry -f Dockerfile .
+
+docker container create --name sampe-entry -p 8080:8080 ahmadr0ni/sample-entry
+
+docker container start sample-entry
+
