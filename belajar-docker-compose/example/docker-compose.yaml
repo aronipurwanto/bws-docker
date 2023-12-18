@@ -12,3 +12,7 @@ services:
   nginx-example3:
     container_name: nginx-example3
     image: nginx:latest
+
+  mongo-example:
+    image: mongo:latest
+    container_name: mongo-example
