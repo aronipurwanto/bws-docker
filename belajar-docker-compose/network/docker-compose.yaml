@@ -1,10 +1,17 @@
 version: "3.8"
 
+networks:
+  sample-network:
+    name: sample-network
+    driver: bridge
+
 volumes:
   mysql-data:
     name: mysql-data
+    external: true
   mongo-data:
     name: mongo-data
+    external: true
 
 services:
   mongo-example:
@@ -23,6 +30,8 @@ services:
         source: mongo-data
         target: "/data/db"
         read_only: false
+    networks:
+      - sample-network
 
   mysql-example:
     image: mysql:latest
@@ -38,3 +47,5 @@ services:
         source: mysql-data
         target: "/var/lib/mysql"
         read_only: false
+    networks:
+      - sample-network

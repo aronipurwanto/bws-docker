@@ -7,23 +7,6 @@ volumes:
     name: mongo-data
 
 services:
-  mongo-example:
-    image: mongo:latest
-    container_name: mongo-example
-    ports:
-      - "27017:27017"
-    #restart: always
-    environment:
-      MONGO_INITDB_ROOT_USERNAME: root
-      MONGO_INITDB_ROOT_PASSWORD: P@ssW0rd32!
-      MONGO_INITDB_DATABASE: sample_db
-    volumes:
-      #- "mongo-data:/data/mongo-data"
-      - type: volume
-        source: mongo-data
-        target: "/data/db"
-        read_only: false
-
   mysql-example:
     image: mysql:latest
     container_name: mysql-example
@@ -38,3 +21,12 @@ services:
         source: mysql-data
         target: "/var/lib/mysql"
         read_only: false
+    deploy:
+      resources:
+        reservations:
+          cpus: "0.25"
+          memory: 512M
+        limits:
+          cpus: "0.5"
+          memory: 1024M
+
