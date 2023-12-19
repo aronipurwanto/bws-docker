@@ -17,3 +17,23 @@ services:
       timeout: 5s
       retries: 3
       start_period: 5s
+      disable: true
+
+  app2:
+    container_name: app2
+    build:
+      context: "./app2"
+      dockerfile: Dockerfile
+    image: "app2-golang:1.0.0"
+    environment:
+      - "APP_PORT=8080"
+    ports:
+      - "8082:8080"
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://localhost:8082/health" ]
+      interval: 5s
+      timeout: 5s
+      retries: 3
+      start_period: 5s
+      disable: true
+
